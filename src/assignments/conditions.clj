@@ -4,13 +4,15 @@
   "Returns the result of x/y unless y is 0. Returns nil when y is 0"
   {:level :easy
    :use   '[when-not zero?]}
-  [x y] (when-not (zero? y) (/ x y)))
+  [x y] 
+  (when-not (zero? y) (/ x y)))
 
 (defn informative-divide
   "Returns the result of x/y unless y is 0. Returns :infinite when y is 0"
   {:level :easy
    :use   '[if-not zero?]}
-  [x y] (if-not (zero? y)
+  [x y] 
+  (if-not (zero? y)
           (/ x y)
           :infinite))
 
@@ -19,7 +21,8 @@
   Falsy values(false and nil) return nil"
   {:level :easy
    :use   '[when-let]}
-  [x] (when-let [value x]
+  [x]
+  (when-let [value x]
     value))
 
 (defn yudishtira
@@ -27,7 +30,8 @@
   Falsy values(false and nil) return :ashwathama"
   {:level :easy
    :use   '[if-let]}
-  [x] (if-let [value x]
+  [x] 
+  (if-let [value x]
         value
         :ashwathama))
 
@@ -37,7 +41,8 @@
   {:level      :easy
    :use        '[when-first concat]
    :alternates '[empty? seq? conj into]}
-  [coll] (when-first [first-element coll]
+  [coll] 
+  (when-first [first-element coll]
            (concat coll [first-element])))
 
 (defn five-point-someone
@@ -47,7 +52,8 @@
   Otherwise it returns :universe"
   {:level :easy
    :use   '[cond]}
-  [x y] (cond
+  [x y] 
+  (cond
           (= y 5) :chetan-bhagat
           (= x 5) :satan-bhagat
           (> x y) :greece
@@ -62,7 +68,8 @@
   {:level      :medium
    :use        '[condp filter]
    :alternates '[if cond]}
-  [coll] (condp #(= %1 (filter (set %1) %2)) coll
+  [coll] 
+  (condp #(= %1 (filter (set %1) %2)) coll
            '(1 3) :wonder-woman
            '(:a :b :c) :durga
            '([2 3] [4 5]) :cleopatra
@@ -76,7 +83,10 @@
   (repeat-and-truncate (range 4) true true 6) => '(0 1 2 3 0 1)"
   {:level :medium
    :use   '[cond->> concat take]}
-  [coll rep? truncate? n])
+  [coll rep? truncate? n] 
+  (cond->> coll
+    rep? (#(apply concat (repeat 2 %)))
+    truncate? (take n)))
 
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
