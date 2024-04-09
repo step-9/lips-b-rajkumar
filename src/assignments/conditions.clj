@@ -62,7 +62,13 @@
   {:level      :medium
    :use        '[condp filter]
    :alternates '[if cond]}
-  [coll])
+  [coll] (condp = true 
+           (= '(1 3) (filter #{1 3} coll)) :wonder-woman
+           (= '(:a :b :c) (filter #{:a :b :c} coll)) :durga
+           (= '([2 3] [4 5]) (filter #{[2 3] [4 5]} coll)) :cleopatra
+           :tuntun
+           ))
+
 
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
