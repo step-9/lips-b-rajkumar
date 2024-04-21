@@ -7,7 +7,23 @@
   {:level        :medium
    :use          '[loop recur]
    :dont-use     '[map]}
-  [f & colls])
+  ([f coll] 
+   (loop [coll coll
+          result []]
+     (if (empty? coll) 
+       (seq result) 
+       (recur 
+        (rest coll)
+        (conj result (f (first coll)))))))
+  
+  ([f & colls] 
+   (loop [colls colls
+          result []]
+     (if (some empty? colls)
+       (seq result)
+       (recur 
+        (map' rest colls)
+        (conj result (apply f (map' first colls))))))))
 
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
